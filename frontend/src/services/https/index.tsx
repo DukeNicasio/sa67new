@@ -162,8 +162,21 @@ async function CreateRent (data: RentInterface)  {
     return response.json();  // Ensure this correctly parses JSON response
 };
 
+
+async function UpdateRentById(id: string, data: RentInterface) {
+    const requestOptions: RequestInit = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `${Bearer} ${Authorization}`,
+        },
+        body: JSON.stringify(data),
+    };
+    return fetchData(`${apiUrl}/rent/${id}`, requestOptions);
+}
+
 // service.ts
-async function UpdateRentById(id: number, data: { status: string }) {
+async function UpdateRentByIdStatus(id: number, data: { status: string }) {
   const requestOptions: RequestInit = {
       method: "PUT",
       headers: {
@@ -206,6 +219,7 @@ export {
     GetRentById,
     CreateRent,
     UpdateRentById,
+    UpdateRentByIdStatus,
     DeleteRentById,
     GetUsers,
 

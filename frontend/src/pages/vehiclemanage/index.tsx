@@ -187,8 +187,17 @@ function VehicleManage() {
 
   const getCars = async () => {
     setLoading(true); // Show loader
+  
+    // Create a promise that resolves after 3 seconds
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  
     try {
-      let res = await GetCars();
+      // Start fetching cars and wait for both fetching and delay to complete
+      const [res] = await Promise.all([
+        GetCars(),
+        delay(1250) // 3-second delay
+      ]);
+  
       if (res.length > 0) {
         setCars(res);
         setFilteredCars(res);
@@ -202,6 +211,7 @@ function VehicleManage() {
       setLoading(false); // Hide loader
     }
   };
+  
 
   useEffect(() => {
     getCars();

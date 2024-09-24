@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Button, Typography, message, Card } from "antd";
-import { UpdateRentById, DeleteRentById } from "../../../services/https"; // Import from your service
+import { UpdateRentByIdStatus, DeleteRentById } from "../../../services/https"; // Import from your service
 
 const { Title, Text } = Typography;
 
@@ -13,7 +13,7 @@ const PaymentPage = () => {
 
     const handlePayment = async () => {
         try {
-            await UpdateRentById(Number(bookingId), { status: 'paymented' });
+            await UpdateRentByIdStatus(Number(bookingId), { status: 'paymented' });
             message.success("การชำระเงินสำเร็จ!");
             navigate("/rent");
         } catch (error) {

@@ -1,4 +1,6 @@
 export interface CarInterface {
+  license_plate: any;
+  province: any;
   ID?: number;
   LicensePlate?: string; // ป้ายทะเบียน
   Province?: string; // จังหวัด
